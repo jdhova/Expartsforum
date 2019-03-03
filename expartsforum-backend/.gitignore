@@ -1,3 +1,5 @@
 
-/ node_ module
+ node_ module
 package-lock.json
+node_modules/
+keys.js

@@ -1,0 +1,34 @@
+
+const express = require('express');
+const mongoose = require('mongoose');
+const  bodyParser = require('body-parser');
+
+
+ const post = require('./routes/api/post.js');
+const profiles = require('./routes/api/profiles');
+const users = require('./routes/api/users');
+
+
+const app = express();
+
+// bodyParser Middleware
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
+
+
+
+mongoose.connect('mongodb://localhost/expartsforum')
+    .then(() => console.log('mongo working'))
+    .catch(err => console.log('ERROR is', err))
+
+
+app.get('/', (req, res) =>{
+res.send('hello Dimond Fish')
+});
+
+app.use('/api/post', post);
+app.use('/api/profiles', profiles);
+app.use('/api/users', users);
+
+const port = process.env.PORT || 3001;
+app.listen(port, () => console.log(`Back end server running on port ${port}`))

@@ -2,11 +2,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const  bodyParser = require('body-parser');
-
+const passport = require('passport');
 
  const post = require('./routes/api/post.js');
 const profiles = require('./routes/api/profiles');
 const users = require('./routes/api/users');
+// const passport = require('../config/passport.js')
 
 
 const app = express();
@@ -20,6 +21,10 @@ app.use(bodyParser.json());
 mongoose.connect('mongodb://localhost/expartsforum')
     .then(() => console.log('mongo working'))
     .catch(err => console.log('ERROR is', err))
+
+app.use(passport.initialize());
+
+require('./config/passport')
 
 
 app.get('/', (req, res) =>{

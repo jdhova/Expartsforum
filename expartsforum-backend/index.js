@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const  bodyParser = require('body-parser');
 const passport = require('passport');
+// const expressValidator = require('express-validator');
 
  const post = require('./routes/api/post.js');
 const profiles = require('./routes/api/profiles');
@@ -10,11 +11,18 @@ const users = require('./routes/api/users');
 // const passport = require('../config/passport.js')
 
 
+
 const app = express();
 
 // bodyParser Middleware
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+
+// app.use(passport.session());
+app.use(passport.initialize());
+require('./config/passport')(passport)
+
+
 
 
 
@@ -24,7 +32,7 @@ mongoose.connect('mongodb://localhost/expartsforum')
 
 app.use(passport.initialize());
 
-require('./config/passport')
+
 
 
 app.get('/', (req, res) =>{

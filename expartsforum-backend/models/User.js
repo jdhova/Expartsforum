@@ -18,6 +18,7 @@ email: {
 password: {
     type: String,
     required: true
+    
 },
 
 avatar: {

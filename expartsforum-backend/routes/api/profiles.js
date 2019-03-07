@@ -21,12 +21,14 @@ const User = require('../../models/User');
 // require('./api/passport')
 router.get('/test', (req,res) => res.json({msg: 'profiles works'}))
 
+
  
 // Protected Route
 router.get ('/', passport.authenticate('jwt', { session: false}), (req,res) => {
     
 
     Profile.findOne({user: req.user.id}) 
+        .populate('user', ['name', 'avatar'])
         .then(profile => {
         if(!profile){
           return res.status(404).json({noprofile: " there is no profile for this user"})
@@ -35,6 +37,72 @@ router.get ('/', passport.authenticate('jwt', { session: false}), (req,res) => {
     })
     .catch(err => res.status(404).json({err:"this is the error"}))
 })
+
+// Public route for all profiles
+    // get profile handle/:handle
+
+    router.get('/all', (req, res) => {
+
+        const errors = {}
+
+        Profile.find()
+        .populate('user', ['name', 'avatar'])
+        .then (profiles => {
+            if(!profiles) {
+            errors.noprofile = ('There are no profiles')
+            return res.status(404).json(errors)
+
+            }
+            res.json(profiles)
+        })
+        .catch( err => res.status(404({errors: 'There are no profiles'})))
+        
+    })
+    
+       
+     
+
+    
+
+    // Public route for profile handle
+    // get profile handle/:handle
+
+    router.get('/handle/:handle', (req,res) => {
+
+        const errors = {}
+
+        Profile.findOne({handle: req.params.handle})
+            .populate('user', ['name', 'avatar'])
+            .then(profile => {
+                if(!profile) {
+                    errors.noprofile = 'This user has no profile handle';
+                    res.status(404).json(errors)
+                }
+                res.json(profile)
+            })
+            .catch (err => res.status(404).json(err))
+    })
+
+    // Public route for api/profile
+    // get profile user/:user_id
+
+    router.get('/user/:user_id', (req,res) => {
+
+        const errors = {}
+
+        Profile.findOne({user: req.params.user_id})
+            .populate('user', ['name', 'avatar'])
+            .then(profile => {
+                if(!profile) {
+                    errors.noprofile = 'This user has no profile id';
+                    res.status(404).json(errors)
+                }
+                res.json(profile)
+            })
+            .catch (err => res.status(404).json({errors: 'This user has no profile id'}))
+    })
+
+
 
 
 // Creating Profile Route which is a protected POST Route
@@ -58,7 +126,7 @@ router.post ('/', passport.authenticate('jwt', { session: false}), (req,res) => 
     if(req.body.githubusername) profileFields.githubusername = req.body.githubusername
     
     if(typeof req.body.skills !== 'undefined') {
-        profileFields.skills = req.body.skills(',')
+        profileFields.skills = req.body.skills.split(',')
     }
     
     profileFields.social = {}
@@ -72,7 +140,7 @@ router.post ('/', passport.authenticate('jwt', { session: false}), (req,res) => 
     Profile.findOne({user: req.user.id})
     .then (profile => {
         if(profile) {
-            findOneAndUpdate(
+            Profile.findOneAndUpdate(
                 {user: req.user.id},
                 {$set: profileFields},
                 {new: true},
@@ -96,8 +164,23 @@ router.post ('/', passport.authenticate('jwt', { session: false}), (req,res) => 
         }
     })
 
-
 })
+
+// protected route to add expiriece to profile 
+// router.post ('/expirience',passport.authenticate('jwt', {session: false})),
+//      (req,res) => {
+//         Profile.findOne ({user: req.user.id})
+//         .then(profile => {
+//             const newExp = {
+//                 title: req.body.title,
+//                 company: req.body.company,
+//                 from: req.body.from,
+//                 to: req.body.to,
+//                 current: req.body.current,
+//                 description: req.body.description
+//             }
+//         })
+// })
 
 
 

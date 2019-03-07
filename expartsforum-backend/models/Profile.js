@@ -11,7 +11,7 @@ const ProfileSchema = new Schema ({
     handle: {
         type: String,
         required: true,
-        max: 40
+        max: 20
     },
     company : {
         type: String
@@ -63,14 +63,16 @@ const ProfileSchema = new Schema ({
         }
     ],
 
-    expirience: [
+    education: [
         
         {
             school: {
                 type: String
+                
             },
             degree : {
-                type: String
+                type: String,
+
             },
             fieldofstudy: {
                 type: String

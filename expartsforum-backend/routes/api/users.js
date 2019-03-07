@@ -11,6 +11,7 @@ const keys =  require('../../config/keys');
 
 // Load input Validation
 const validateRegisterInput = require('../../validation/register'); 
+const validateLoginInput = require('../../validation/login'); 
 
 
 // Load user model
@@ -30,7 +31,7 @@ router.post('/register', (req, res) => {
     User.findOne({email: req.body.email})
     .then(user => {
         if(user) {
-            return res.status(400).json({email: 'what now exsists'})
+            return res.status(400).json({email: 'Email already Exsists'})
         } else {
             const avatar = gravatar.url(req.body.email, {
                 s:'200',
@@ -61,6 +62,13 @@ router.post('/register', (req, res) => {
 
 
 router.post('/login', (req,res) => {
+
+    const {errors,isValid} = validateLoginInput(req.body)
+
+    if(!isValid) {
+        return res.status(400).json(errors)
+    }
+
     const email = req.body.email
     const password = req.body.password
 

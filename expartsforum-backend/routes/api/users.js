@@ -5,7 +5,7 @@ const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require ('jsonwebtoken');
 const keys =  require('../../config/keys');
- const passport = require('passport')
+const passport = require('passport')
 
 
 
@@ -17,17 +17,14 @@ const validateLoginInput = require('../../validation/login');
 // Load user model
 const User = require('../../models/User');
 
-
 router.get('/test', (req,res) => res.json({msg: 'user works'}))
 
-
+// Register Post Route Public Route
 router.post('/register', (req, res) => {
-
     const{ errors, isValid} = validateRegisterInput(req.body)
     if(!isValid) {
         return res.status(400).json(errors);
     }
-
     User.findOne({email: req.body.email})
     .then(user => {
         if(user) {
@@ -60,7 +57,7 @@ router.post('/register', (req, res) => {
 });
 
 
-
+// Public Login post route
 router.post('/login', (req,res) => {
 
     const {errors,isValid} = validateLoginInput(req.body)
@@ -102,7 +99,6 @@ User.findOne({email})
 
 
 // router.get('/current', (req,res) => res.json({msg: 'user works'}))
-
 // Protected Routes
 
 router.get (

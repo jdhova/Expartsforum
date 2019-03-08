@@ -38,7 +38,8 @@ const ProfileSchema = new Schema ({
 
         {
             title: {
-                type: String
+                type: String,
+                required: true
             },
             company : {
                 type: String
@@ -54,7 +55,7 @@ const ProfileSchema = new Schema ({
             },
             current : {
                 type: Boolean,
-                default: false
+                 default: false
             },
             description: {
                 type: String,
@@ -67,15 +68,18 @@ const ProfileSchema = new Schema ({
         
         {
             school: {
-                type: String
+                type: String,
+                required: true
                 
             },
             degree : {
                 type: String,
+                required: true
 
             },
             fieldofstudy: {
                 type: String
+                //  required: true
             },
             from : {
                 type : Date

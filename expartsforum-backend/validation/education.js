@@ -8,19 +8,19 @@ module.exports = function validateEducationInput(data) {
 
     data.school = !isEmpty(data.school) ? data.school : '';
     data.degree = !isEmpty(data.degree) ? data.degree : '';
-    // data.fieldofstudy = !isEmpty(data.fieldofstudy) ? data.fieldofstudy : '';
+    data.fieldofstudy = !isEmpty(data.fieldofstudy) ? data.fieldofstudy : '';
     
     if (Validator.isEmpty(data.school)) {
         errors.school = 'School/ University name  is reqired';
     }
 
     if (Validator.isEmpty(data.degree)) {
-        errors.degree = 'Please enter Degree Obtained';
-    }
+         errors.degree = 'Please enter Degree Obtained';
+     }
 
-    // if (Validator.isEmpty(data.fieldofstudy)) {
-    //     errors.fieldofstudy = 'fieldofstudy   is reqired';
-    // }
+    if (Validator.isEmpty(data.fieldofstudy)) {
+         errors.fieldofstudy = 'fieldofstudy   is reqired';
+     }
 
     return {
         errors,

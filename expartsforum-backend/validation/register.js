@@ -3,9 +3,6 @@ const Validator = require ('validator');
 const isEmpty = require  ('./is-empty');
 
 
-
-
-
 module.exports = function validatateRegisterInput(data) {
     let errors = {};
     data.name = !isEmpty(data.name) ? data.name : '';
@@ -27,7 +24,7 @@ module.exports = function validatateRegisterInput(data) {
         errors.password = 'Please Enter Password';
     }
     if (Validator.isEmpty(data.password2)) {
-        errors.password2 = 'Please Reenter Password';
+        errors.password2 = 'Password 2 Please Verify Password';
     }
     if (!Validator.equals(data.password, data.password2)) {
         errors.password2 = 'Password must be the same';

@@ -20,6 +20,7 @@ const User = require('../../models/User');
 router.get('/test', (req,res) => res.json({msg: 'user works'}))
 
 // Register Post Route Public Route
+// users/register
 router.post('/register', (req, res) => {
     const{ errors, isValid} = validateRegisterInput(req.body)
     if(!isValid) {
@@ -57,15 +58,12 @@ router.post('/register', (req, res) => {
 });
 
 
-// Public Login post route
+// Public Login post route 
 router.post('/login', (req,res) => {
-
     const {errors,isValid} = validateLoginInput(req.body)
-
     if(!isValid) {
         return res.status(400).json(errors)
     }
-
     const email = req.body.email
     const password = req.body.password
 
@@ -74,12 +72,10 @@ User.findOne({email})
     if(!user){
         return res.status(404).json({email: 'user not found'})
     }
-
     bcrypt.compare(password, user.password)
     .then(isMatch => {
-        if(isMatch) {
-            
-            const payload = {id: user.id, name: user.name, avatar: user.avatar };
+        if(isMatch) {    
+           const payload = {id: user.id, name: user.name, avatar: user.avatar };
             jwt.sign
             (payload, keys.secretOrPrivateKey, 
             {expiresIn: 4500}, 

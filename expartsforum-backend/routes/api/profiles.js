@@ -27,7 +27,7 @@ router.get('/test', (req,res) => res.json({msg: 'profiles works'}))
 router.get ('/', passport.authenticate('jwt', { session: false}), (req,res) => {
     
     Profile.findOne({user: req.user.id}) 
-        .populate('user', ['name', 'avatar'])
+        .populate('user', ['name','avatar'])
         .then(profile => {
         if(!profile){
           return res.status(404).json({noprofile: " there is no profile for this user"})
@@ -44,7 +44,7 @@ router.get ('/', passport.authenticate('jwt', { session: false}), (req,res) => {
 router.get('/all', (req, res) => {
     const errors = {}
     Profile.find()
-    .populate('user', ['name', 'avatar'])
+    .populate('user', ['name','avatar'])
     .then (profiles => {
         if(!profiles) {
         errors.noprofile = ('There are no profiles')
@@ -66,7 +66,7 @@ router.get('/handle/:handle', (req,res) => {
         .populate('user', ['name', 'avatar'])
         .then(profile => {
             if(!profile) {
-                errors.noprofile = 'This user has no profile handle';
+                errors.noprofile = 'There is no profile for this user';
                 res.status(404).json(errors)
             }
             res.json(profile)
@@ -81,15 +81,15 @@ router.get('/handle/:handle', (req,res) => {
 router.get('/user/:user_id', (req,res) => {
     const errors = {}
     Profile.findOne({user: req.params.user_id})
-        .populate('user', ['name', 'avatar'])
+        .populate('user', ['name','email', 'avatar'])
         .then(profile => {
             if(!profile) {
-                errors.noprofile = 'This user has no profile id';
+                errors.noprofile = 'This user has no profile';
                 res.status(404).json(errors)
             }
             res.json(profile)
         })
-        .catch (err => res.status(404).json({errors: 'This user has no profile id'}))
+        .catch (err => res.status(404).json({errors: 'This user has no profile '}))
 })
 
 
@@ -122,25 +122,27 @@ router.post ('/', passport.authenticate('jwt', { session: false}), (req,res) => 
     if(req.body.linkedin) profileFields.social.linkedin = req.body.linkedin
     if(req.body.instagram) profileFields.social.instagram = req.body.instagram
     
-    Profile.findOne({user: req.user.id})
-    .then (profile => {
-        if(profile) {
-            Profile.findOneAndUpdate(
-                {user: req.user.id},
-                {$set: profileFields},
-                {new: true},
-            ).then (profile => res.json(profile))
-        } else {
-            // create pfofile
-            Profile.findOne({handle: profileFields.handle})
+    // verify if handle exsists
+    Profile.findOne({handle: profileFields.handle})
             .then( profile => {
                 if(profile) {
                     errors.handle = 'Profile handle taken'
                     res.status(400).json(errors)
-                }
+                } else {
+    // create new handle
+        Profile.findOne({user: req.user.id})
+        .then (profile => {
+            if(profile) {
+                Profile.findOneAndUpdate(
+                    {user: req.user.id},
+                    {$set: profileFields},
+                    {new: true},
+                ).then (profile => res.json(profile))
+            } 
+                // create pfofile
                   new Profile(profileFields).save()
                     .then( profile => 
-                        res.status(400).json(profile)
+                        res.json(profile)
                         )               
             })
         }
@@ -149,6 +151,7 @@ router.post ('/', passport.authenticate('jwt', { session: false}), (req,res) => 
 })
 
 // protected route to add expiriece to profile
+//  /profiles/experience
 
 router.post('/experience', passport.authenticate('jwt',{session: false}),         
     (req, res) =>{
@@ -168,15 +171,12 @@ router.post('/experience', passport.authenticate('jwt',{session: false}),
                 description: req.body.description
             }
             // adds to the expirience array
-            profile.expirience.unshift(newExp)
+            profile.experience.unshift(newExp)
             profile.save().then(profile => res.json(profile))
         })
 
 });
 
-
-
-// protected route to add Education to profile
 
 router.post('/education', passport.authenticate('jwt',{session: false}),         
     (req, res) =>{
@@ -202,18 +202,21 @@ router.post('/education', passport.authenticate('jwt',{session: false}),
 
 });
 
+
+
 // Delete profile  Private Route
+
 
 router.delete('/experience/:exp_id', passport.authenticate('jwt',{session: false}),         
     (req, res) =>{
         
         Profile.findOne({user: req.user.id})
         .then(profile => {
-            const removeIndex = profile.expirience
+            const removeIndex = profile.experience
             .map(item => item.id)
             .indexOf(req.params.exp_id)
 
-            profile.expirience.splice(removeIndex, 1);
+            profile.experience.splice(removeIndex, 1);
 
             profile.save().then(profile => res.json(profile))    
         })
@@ -221,7 +224,8 @@ router.delete('/experience/:exp_id', passport.authenticate('jwt',{session: false
 
 });
 
-// Delete profile  Private Route
+
+// Delete profile  Private Route/ profile
 
 router.delete('/education/:edu_id', passport.authenticate('jwt',{session: false}),         
     (req, res) =>{
@@ -240,6 +244,19 @@ router.delete('/education/:edu_id', passport.authenticate('jwt',{session: false}
 
 });
 
+
+// Delete USER profile/ profile
+
+router.delete('/', passport.authenticate('jwt',{session: false}),         
+    (req, res) =>{
+        
+       Profile.findOneAndRemove({user: req.user.id}).then(() => {
+           User.findOneAndRemove({_id: req.user.id}).then(() => {
+               res.json({done : 'Profile Deleted'})
+           })
+       })
+
+});
 
 module.exports = router;
 

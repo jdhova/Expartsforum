@@ -7,3 +7,6 @@ to start this back end
 nodemon run server
 npm run server
 entry route is index.js
+
+npm start  react front end 
+

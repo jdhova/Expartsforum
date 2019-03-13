@@ -10,24 +10,21 @@ import React, { Component } from 'react'
              email:"",
              password:"",
              errors:""
-         }
-
-         this.onChange = this.onChange.bind(this)
-         this.onSubmit = this.onSubmit.bind(this)
+         }  
 
      }
-
-     onChange(e){
-        this.setState({[e.target.name] : e.target.value})
+     handleChange = e => {
+        this.setState({[e.target.name]: e.target.value})
      }
-     onSubmit(e){
+
+     handleSubmit = (e) => {
         e.preventDefault()
-        const logininfo ={
-            email:this.state.email,
-            password:this.state.password
-        }
-        console.log(logininfo)
-     }
+        const logininfo = {
+                email:this.state.email,
+                password:this.state.password  
+      }
+      console.log(logininfo)
+    }
 
 
   render() {
@@ -39,14 +36,14 @@ import React, { Component } from 'react'
           <h1 className="display-4 text-center">Log In</h1>
           <p className="lead text-center">Sign in to your Exparts Forum Account</p>
           
-          <form onSubmit ={this.onSubmit}>
+          <form onSubmit ={this.handleSubmit}>
             <div className="form-group">
               <input type="email" 
               className="form-control form-control-lg" 
               placeholder="Email Address" 
               name="email" 
               value = {this.state.name}
-              onChange ={this.onChange}/>
+              onChange ={this.handleChange}/>
             </div>
             
             <div className="form-group">
@@ -55,7 +52,7 @@ import React, { Component } from 'react'
               placeholder="Password" 
               name="password"
               value = {this.state.password}
-              onChange = {this.onChange} />
+              onChange = {this.handleChange} />
             </div>
             
             <input type="submit" className="btn btn-info btn-block mt-4" />

@@ -1,9 +1,8 @@
 
-
 import React, { Component } from 'react'
+import axios from 'axios';
 
  class Login extends Component {
-
      constructor(){
          super() 
          this.state = {
@@ -23,11 +22,16 @@ import React, { Component } from 'react'
                 email:this.state.email,
                 password:this.state.password  
       }
-      console.log(logininfo)
+
+      axios
+            .post('/api/users/login', logininfo)
+            .then(res => console.log(res.data))
+             .catch(errors => this.setState({errors: errors.response.data}))
     }
 
-
   render() {
+
+        const {errors} = this.state
     return (
         <div className="login">
     <div className="container">
@@ -39,20 +43,22 @@ import React, { Component } from 'react'
           <form onSubmit ={this.handleSubmit}>
             <div className="form-group">
               <input type="email" 
-              className="form-control form-control-lg"
+              className={errors.email ? "form-control form-control-lg is-invalid" :"form-control form-control-lg "}
               placeholder="Email Address" 
               name="email" 
               value = {this.state.name}
               onChange ={this.handleChange}/>
+                <div className="invalid-feedback">{errors.email}</div>
             </div>
             
             <div className="form-group">
               <input type="password" 
-              className="form-control form-control-lg" 
+              className={errors.password ? "form-control form-control-lg is-invalid": "form-control form-control-lg"} 
               placeholder="Password" 
               name="password"
               value = {this.state.password}
               onChange = {this.handleChange}/>
+              <div className="invalid-feedback">{errors.password}</div>
             </div>
             
             <input type="submit" className="btn btn-info btn-block mt-4" />

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import classnames from 'classnames';
 
 
 class Register extends Component {
@@ -35,18 +34,13 @@ class Register extends Component {
             .post('/api/users/register', newUser)
             .then(res => console.log(res.data))
             .catch(errors => this.setState({errors: errors.response.data}))
-                // console.log(errors.response.data))
 
-            // const errors = this.state.errors
-            // this.setState ({errors : errors.name})
         
     }        
 
   render() {
 
     const {errors} = this.state
-    // const errors = this.state.errors
- 
     return (
         <div className="login">
             <div className="container">
@@ -55,80 +49,55 @@ class Register extends Component {
               <h1 className="display-4 text-center">Register </h1>
               <p className="lead text-center">Join the Exparts</p>
               
-
                     <form onSubmit ={this.handleSumbit}>
                         <div className="form-group">
-                        <input type="text" 
-                        
-                        className= {errors.name ? "form-control form-control-lg is-invalid" : "form-control form-control-lg"}
-                        
-                        // if (errors.name.isEmpty)
-                        
-                        // {classnames("form-control form-control-lg",{
-                        //     "is-invalid ":errors.name
-                        //  })}
-
-                        placeholder="Name" 
-                        name="name" 
-                        value={this.state.name} 
-                        onChange = {this.handleChange}/>
-                        <div class="invalid-feedback">{errors.name}</div>
+                            <input type="text"          
+                            className=
+                            {errors.name ? "form-control form-control-lg is-invalid" : "form-control form-control-lg"}
+                            placeholder="Name" 
+                            name="name" 
+                            value={this.state.name} 
+                            onChange = {this.handleChange}/>
+                            <div className="invalid-feedback">{errors.name}</div>
                         </div>
-
-                        {errors.name &&(
-                            <div className= "invalid-feedback"></div>
-                        )}
-                        
-
-                        <div className="form-group">
-                        
-                        <input type="email" className={classnames("form-control form-control-lg",{
-                            'is-invalid': errors.name
-                        })}
-
-                        placeholder="Email Address" 
-                        name="email"
-                        value={this.state.email} 
-                        onChange = {this.handleChange}/>
-                        <div class="invalid-feedback">{errors.email}</div>
-                        </div>
-
-                        
-
-                        <div>
-                        <small className="form-text text-muted">This site uses Gravatar so if you want a profile image, use a Gravatar email</small>
+            
+                        <div className="form-group">                        
+                            <input type="email" className= {errors.email ? "form-control form-control-lg is-invalid" : "form-control form-control-lg"}
+                            placeholder="Email Address" 
+                            name="email"
+                            value={this.state.email} 
+                            onChange = {this.handleChange}/>
+                            <div className="invalid-feedback">{errors.email}</div>
+                            </div>
+                            <div>
+                            <small className="form-text text-muted">This site uses Gravatar so if you want a profile image, use a Gravatar email</small>
                         </div>
                         
                         <div className="form-group">
-
-                            <input type="password" className={classnames("form-control form-control-lg",{
-                                'is-invalid':errors.password
-                            })} 
+                            <input type="password"
+                             className= 
+                             {errors.password ? "form-control form-control-lg is-invalid" : "form-control form-control-lg"}
                             placeholder="Password" 
                             name="password"
                             value = {this.state.password}
                             onChange = {this.handleChange}/>
-                            <div class="invalid-feedback">{errors.password}</div>
+                            <div className="invalid-feedback">{errors.password}</div>
                         </div>
 
-                        
-
                         <div className="form-group">
+                            <input type="password" 
+                            className=
+                            {errors.password2 ? "form-control form-control-lg is-invalid" : "form-control form-control-lg"}
 
-                        <input type="password" 
-                        className={classnames("form-control form-control-lg",{
-                            'is-invalid': errors.password2
-                        })}
-
-                        placeholder="Confirm Password" 
-                        name="password2"
-                        value={this.state.password2}
-                        onChange = {this.handleChange}/>
-                        <div class="invalid-feedback">{errors.password2}</div>
+                            placeholder="Confirm Password" 
+                            name="password2"
+                            value={this.state.password2}
+                            onChange = {this.handleChange}/>
+                            <div className="invalid-feedback">{errors.password2}</div>
                         </div>
 
                            <input type="submit" className="btn btn-info btn-block mt-4" />
-                           </form>
+                    </form>
             </div>
             </div>
         </div>

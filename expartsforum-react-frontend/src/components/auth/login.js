@@ -39,7 +39,7 @@ import React, { Component } from 'react'
           <form onSubmit ={this.handleSubmit}>
             <div className="form-group">
               <input type="email" 
-              className="form-control form-control-lg" 
+              className="form-control form-control-lg"
               placeholder="Email Address" 
               name="email" 
               value = {this.state.name}
@@ -52,7 +52,7 @@ import React, { Component } from 'react'
               placeholder="Password" 
               name="password"
               value = {this.state.password}
-              onChange = {this.handleChange} />
+              onChange = {this.handleChange}/>
             </div>
             
             <input type="submit" className="btn btn-info btn-block mt-4" />

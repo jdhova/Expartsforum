@@ -34,7 +34,8 @@ class Register extends Component {
         axios
             .post('/api/users/register', newUser)
             .then(res => console.log(res.data))
-            .catch(errors => console.log(errors.response.data))
+            .catch(errors => this.setState({errors: errors.response.data}))
+                // console.log(errors.response.data))
 
             // const errors = this.state.errors
             // this.setState ({errors : errors.name})
@@ -71,6 +72,7 @@ class Register extends Component {
                         name="name" 
                         value={this.state.name} 
                         onChange = {this.handleChange}/>
+                        <div class="invalid-feedback">{errors.name}</div>
                         </div>
 
                         {errors.name &&(
@@ -87,13 +89,11 @@ class Register extends Component {
                         placeholder="Email Address" 
                         name="email"
                         value={this.state.email} 
-                        onChange = {this.handleChange}
-                        />
+                        onChange = {this.handleChange}/>
+                        <div class="invalid-feedback">{errors.email}</div>
                         </div>
 
-                        {errors.email &&(
-                            <div className= "invalid-feedback"></div>
-                        )}
+                        
 
                         <div>
                         <small className="form-text text-muted">This site uses Gravatar so if you want a profile image, use a Gravatar email</small>
@@ -108,11 +108,10 @@ class Register extends Component {
                             name="password"
                             value = {this.state.password}
                             onChange = {this.handleChange}/>
+                            <div class="invalid-feedback">{errors.password}</div>
                         </div>
 
-                        {errors.password&&(
-                            <div className ="invalid-feedback"></div>
-                        )}
+                        
 
                         <div className="form-group">
 
@@ -125,10 +124,8 @@ class Register extends Component {
                         name="password2"
                         value={this.state.password2}
                         onChange = {this.handleChange}/>
+                        <div class="invalid-feedback">{errors.password2}</div>
                         </div>
-                        {errors.password2 &&(
-                            <div className ="invalid-feedback"></div>
-                        )}
 
                            <input type="submit" className="btn btn-info btn-block mt-4" />
                            </form>

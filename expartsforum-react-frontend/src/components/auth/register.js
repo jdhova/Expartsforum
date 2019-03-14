@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import {connect } from 'react-redux';
+import { registerUser} from '../../actions/authActions'
 
 
 class Register extends Component {
@@ -14,11 +15,16 @@ class Register extends Component {
         };
     }
 
+    componentWillReceiveProps(nextProps){
+        if(nextProps.errors) {
+            this.setState({errors: nextProps.errors})
+        }
+    }
+
     handleChange = (e) => {
         this.setState ({[e.target.name]: e.target.value})
         
-    }
-    
+    }   
 
     handleSumbit = (e) => {
         e.preventDefault()
@@ -27,14 +33,8 @@ class Register extends Component {
             email:this.state.email,
             password:this.state.password,
             password2:this.state.password2
-
-
         } 
-        axios
-            .post('/api/users/register', newUser)
-            .then(res => console.log(res.data))
-            .catch(errors => this.setState({errors: errors.response.data}))
-
+       this.props.registerUser(newUser);
         
     }        
 
@@ -47,7 +47,7 @@ class Register extends Component {
             <div className="row">
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">Register </h1>
-              <p className="lead text-center">Join the Exparts</p>
+              <p className="lead text-center">Join the Experts</p>
               
                     <form onSubmit ={this.handleSumbit}>
                         <div className="form-group">
@@ -105,5 +105,9 @@ class Register extends Component {
     )
   }
 }
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+})
 
-export default Register;
+export default connect(mapStateToProps, {registerUser})(Register);

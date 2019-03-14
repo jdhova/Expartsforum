@@ -8,7 +8,7 @@ import {Link} from 'react-router-dom'
       <React.Fragment>
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
             <div className="container">
-            <Link className="navbar-brand" to="/">Exparts Forum</Link>
+            <Link className="navbar-brand" to="/">Experts Forum</Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-nav">
                 <span className="navbar-toggler-icon"></span>
             </button>

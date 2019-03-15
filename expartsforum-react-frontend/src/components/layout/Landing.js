@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
  class Landing extends Component {
   render() {
     return (
-    //   <React.Fragment>
+      <React.Fragment>
     <div className="dark-overlay landing-inner text-light">
       <div className="container">
         <div className="row">
@@ -22,9 +22,9 @@ import {Link} from 'react-router-dom'
         </div>
       </div>
     </div>
-    //   </React.Fragment>
+      </React.Fragment>
     )
   }
-}
+};
 
 export default  Landing;

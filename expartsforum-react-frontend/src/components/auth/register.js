@@ -13,18 +13,18 @@ class Register extends Component {
             password2: '',
             errors:{}
         };
-    }
+    };
 
     componentWillReceiveProps(nextProps){
         if(nextProps.errors) {
             this.setState({errors: nextProps.errors})
         }
-    }
+    };
 
     handleChange = (e) => {
         this.setState ({[e.target.name]: e.target.value})
         
-    }   
+    };   
 
     handleSumbit = (e) => {
         e.preventDefault()
@@ -36,7 +36,7 @@ class Register extends Component {
         } 
        this.props.registerUser(newUser);
         
-    }        
+    };        
 
   render() {
 
@@ -104,10 +104,10 @@ class Register extends Component {
         </div>
     )
   }
-}
+};
 const mapStateToProps = state => ({
     auth: state.auth,
     errors: state.errors
-})
+});
 
 export default connect(mapStateToProps, {registerUser})(Register);

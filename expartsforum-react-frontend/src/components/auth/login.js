@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react'
-import axios from 'axios';
+import {connect } from 'react-redux';
+import { loginUser} from '../../actions/authActions'
 
  class Login extends Component {
      constructor(){
@@ -11,10 +12,18 @@ import axios from 'axios';
              errors:""
          }  
 
-     }
+     };
+ 
+  
+  componentWillReceiveProps(newProps){
+    if(newProps.errors){
+      this.setState({errors: newProps.errors})
+    }
+  };
+
      handleChange = e => {
         this.setState({[e.target.name]: e.target.value})
-     }
+     };
 
      handleSubmit = (e) => {
         e.preventDefault()
@@ -23,14 +32,10 @@ import axios from 'axios';
                 password:this.state.password  
       }
 
-      axios
-            .post('/api/users/login', logininfo)
-            .then(res => console.log(res.data))
-             .catch(errors => this.setState({errors: errors.response.data}))
-    }
+      this.props.loginUser(logininfo)
+    };
 
   render() {
-
         const {errors} = this.state
     return (
         <div className="login">
@@ -69,6 +74,13 @@ import axios from 'axios';
   </div>
     )
   }
-}
+};
 
-export default Login;
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+
+export default connect(mapStateToProps, {loginUser})(Login);

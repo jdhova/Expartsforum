@@ -14,10 +14,19 @@ import { loginUser} from '../../actions/authActions'
 
      };
  
+  componentDidMount(){
+    if(this.props.auth.isAuthenticated){
+      this.props.history.push('/dashboard')
+    }
+  }
   
   componentWillReceiveProps(newProps){
-    if(newProps.errors){
-      this.setState({errors: newProps.errors})
+    if(newProps.auth.isAuthenticated){
+      this.props.history.push('./dashboard')
+    }
+
+    if(newProps.errors) {
+      this.setState({errors:newProps.errors})
     }
   };
 
@@ -27,12 +36,12 @@ import { loginUser} from '../../actions/authActions'
 
      handleSubmit = (e) => {
         e.preventDefault()
-        const logininfo = {
+        const userData = {
                 email:this.state.email,
                 password:this.state.password  
       }
 
-      this.props.loginUser(logininfo)
+      this.props.loginUser(userData)
     };
 
   render() {

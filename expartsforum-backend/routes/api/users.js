@@ -78,7 +78,7 @@ User.findOne({email})
            const payload = {id: user.id, name: user.name, avatar: user.avatar };
             jwt.sign
             (payload, keys.secretOrPrivateKey, 
-            {expiresIn: 4500}, 
+            {expiresIn: 7500}, 
             (err, token) => {
                 res.json({
                     success: true,

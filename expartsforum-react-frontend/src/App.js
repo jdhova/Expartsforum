@@ -4,12 +4,34 @@ import Footer from './components/layout/Footer';
 import {Provider} from 'react-redux';
 import store from './store'
 
+import jwt_decode from 'jwt-decode'
+import saveTokenToHead from './utils/saveTokenToHead'
+import {setCurrentUser, logoutUser} from './actions/authActions'
 
 import Landing from './components/layout/Landing';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import Register from './components/auth/register'
 import Login from './components/auth/login'
 import './App.css';
+
+// import token
+
+if (localStorage.jwtToken) {
+  saveTokenToHead(localStorage.jwtToken)
+  const extracted = jwt_decode(localStorage.jwtToken)
+  // set user and make authenticated on several pages
+  store.dispatch(setCurrentUser(extracted))
+
+  // check token for logout
+const currentTime = Date.now() / 1000
+if(extracted.exp < currentTime ) {
+  store.dispatch(logoutUser())
+
+  window.location.href ='/login'
+  }
+}
+
+
 
 
 

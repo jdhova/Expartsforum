@@ -30,6 +30,7 @@ import TextFieldGroup from '../common/TextFieldGroup';
     if(newProps.errors) {
       this.setState({errors:newProps.errors})
     }
+
   };
 
       onChange = e => {
@@ -93,45 +94,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, {loginUser})(Login);
-
-
-
-{/* <TextFieldGroup 
-palceholder = 'Email Address'
-name = 'email'
-type = 'email'
-value ={this.state.email}
-onChange= {this.onChange}
-error = {errors.email}
-/>
-
-<TextFieldGroup 
-palceholder = 'Password'
-name = 'Password'
-type = 'Password'
-value ={this.state.password}
-onChange= {this.onChange}
-error = {errors.password}
-/> */}
-
-{/* 
-
-  <div className="form-group">
-  <input type="email" 
-  className={errors.email ? "form-control form-control-lg is-invalid" :"form-control form-control-lg "}
-  placeholder="Email Address" 
-  name="email" 
-  value = {this.state.name}
-  onChange ={this.handleChange}/>
-    <div className="invalid-feedback">{errors.email}</div>
-</div> 
-
-<div className="form-group">
-  <input type="password" 
-  className={errors.password ? "form-control form-control-lg is-invalid": "form-control form-control-lg"} 
-  placeholder="Password" 
-  name="password" 
-  value = {this.state.password}
-  onChange = {this.handleChange}/>
-  <div className="invalid-feedback">{errors.password}</div>
-</div>  */}

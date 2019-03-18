@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
-import { protoTypes } from 'prop-types';
+import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 
  class Landing extends Component {
@@ -36,12 +36,12 @@ import { connect } from 'react-redux';
   }
 };
 
-// Landing.protoTypes = {
-//   auth: protoTypes.object.isRequired
-// }
+Landing.propTypes = {
+  auth: PropTypes.object.isRequired
+}
 
 const mapStateToProps = state => ({
   auth: state.auth
 })
 
-export default  (mapStateToProps)(Landing);
+export default connect(mapStateToProps)(Landing)

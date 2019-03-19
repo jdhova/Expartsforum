@@ -9,7 +9,6 @@ import React from 'react'
     value,
     error,
     info,
-    type,
     onChange,
 } ) => {
   return (

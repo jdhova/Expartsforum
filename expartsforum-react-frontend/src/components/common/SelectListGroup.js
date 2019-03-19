@@ -1,10 +1,9 @@
 
 
 import React from 'react'
-// import { PropTypes } from 'prop-types';
 
 
- const SelectFieldGroup = ({
+ const SelectListGroup = ({
     name,
     value,
     error,
@@ -36,6 +35,6 @@ import React from 'react'
   )
 };
 
-export default SelectFieldGroup
+export default SelectListGroup
 
 

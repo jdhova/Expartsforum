@@ -17,6 +17,7 @@ import React from 'react'
   return (
    
     <div className="form-group">
+          
               <input type={type} 
               className={error ? "form-control form-control-lg is-invalid" :"form-control form-control-lg "}
               placeholder={placeholder}

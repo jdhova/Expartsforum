@@ -75,3 +75,5 @@ export default App;
 
 //<img src = {user.avatar} alt={user.name} ></img> Logout here needs to be refixed
 // valdation needs to be refixed. logout redirect needs to be checked again to be sure
+// fix bootstrap for the input fields of profile.
+// fix boothstrap for the photos section

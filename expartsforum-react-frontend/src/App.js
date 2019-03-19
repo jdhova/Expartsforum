@@ -14,6 +14,7 @@ import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Register from './components/auth/register'
 import Login from './components/auth/login'
 import Dashboard from './components/dashboard/Dashboard'
+import CreateProfile from './components/create-profile/CreateProfile'
 import { clearCurrentProfile } from './actions/profileActions';
 import './App.css';
 
@@ -53,6 +54,9 @@ class App extends Component {
             <Route exact path = "/register" component={Register}/>
             <Switch>
             <PrivateRoute exact path = "/dashboard" component={Dashboard}/>
+            </Switch>
+            <Switch>
+            <PrivateRoute exact path = "/create-profile" component={CreateProfile}/>
             </Switch>
             <Footer /> 
           </div>

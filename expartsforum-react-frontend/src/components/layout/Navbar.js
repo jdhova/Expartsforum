@@ -8,7 +8,7 @@ import {clearCurrentProfile} from '../../actions/profileActions'
 
  class Navbar extends Component {
 
-  handleLogout(e) {
+  handleLogout = (e) =>{
   e.preventDefault();
   this.props.clearCurrentProfile()
   this.props.logoutUser()
@@ -22,7 +22,8 @@ import {clearCurrentProfile} from '../../actions/profileActions'
     const authAccess = (
       <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
-                    <a href ="Logout here" onClick = {this.handleLogout.bind(this)}
+              
+                    <a href ="Logout here" onClick = {this.handleLogout}
                     className="nav-item">
                     <img src = {user.avatar} alt={user.name} ></img>
                     Logout here

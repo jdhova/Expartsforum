@@ -7,9 +7,10 @@ import store from './store'
 import jwt_decode from 'jwt-decode'
 import saveTokenToHead from './utils/saveTokenToHead'
 import {setCurrentUser, logoutUser} from './actions/authActions'
+import PrivateRoute from './components/common/PrivateRoute'
 
 import Landing from './components/layout/Landing';
-import { BrowserRouter as Router, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Register from './components/auth/register'
 import Login from './components/auth/login'
 import Dashboard from './components/dashboard/Dashboard'
@@ -50,7 +51,9 @@ class App extends Component {
             <Route exact path = "/"  component={Landing }/>
             <Route exact path = "/login" component={Login}/>
             <Route exact path = "/register" component={Register}/>
-            <Route exact path = "/dashboard" component={Dashboard}/>
+            <Switch>
+            <PrivateRoute exact path = "/dashboard" component={Dashboard}/>
+            </Switch>
             <Footer /> 
           </div>
         </Router>
@@ -60,3 +63,11 @@ class App extends Component {
 }
 
 export default App;
+
+
+// Personal Notes
+// </Switch> used for private Routes
+// import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+
+//<img src = {user.avatar} alt={user.name} ></img> Logout here needs to be refixed
+// valdation needs to be refixed. logout redirect needs to be checked again to be sure

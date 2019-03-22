@@ -78,23 +78,23 @@ class Register extends Component {
                             error = {errors.password}
                             />
 
-                            <TextFieldGroup 
-                                    placeholder = 'Password '
-                                    name = 'password'
-                                    type = 'password'
-                                    value ={this.state.password}
-                                    onChange= {this.onChange}
-                                    error = {errors.password}
-                                    />
+                    <TextFieldGroup 
+                            placeholder = 'Password '
+                            name = 'password'
+                            type = 'password'
+                            value ={this.state.password}
+                            onChange= {this.onChange}
+                            error = {errors.password}
+                            />
 
-                            <TextFieldGroup 
-                                    placeholder = 'Confirm Password'
-                                    name = 'password2'
-                                    type = 'password'
-                                    value ={this.state.password2}
-                                    onChange= {this.onChange}
-                                    error = {errors.password2}
-                                    />
+                    <TextFieldGroup 
+                            placeholder = 'Confirm Password'
+                            name = 'password2'
+                            type = 'password'
+                            value ={this.state.password2}
+                            onChange= {this.onChange}
+                            error = {errors.password2}
+                            />
 
                            <input type="submit" className="btn btn-info btn-block mt-4" />
                     </form>

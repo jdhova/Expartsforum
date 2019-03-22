@@ -69,3 +69,15 @@ yarn-error.log*
                             onChange = {this.onChange}/>
                             <div className="invalid-feedback">{errors.password2}</div>
                         </div> */}
+
+
+// Personal Notes
+// </Switch> used for private Routes
+// import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+
+//<img src = {user.avatar} alt={user.name} ></img> Logout here needs to be refixed
+// valdation needs to be refixed. logout redirect needs to be checked again to be sure
+// fix bootstrap for the input fields of profile.
+// fix boothstrap for the photos section
+// fix toggling profile social media or enter manually 52
+// FIX the Authrozation for the tokens so the profile route woks

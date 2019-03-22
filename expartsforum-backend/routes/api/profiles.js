@@ -100,7 +100,18 @@ router.post ('/', passport.authenticate('jwt', { session: false}), (req,res) => 
         if(!isValid) {
             return res.status(400).json(errors)
         }
+
+
+  
+// router.post('/', (req,res) => { 
+//     const { errors, isValid } = validateProfileinput(req.body)
+//         if(!isValid) {
+//             return res.status(400).json(errors)
+//         }
+    
     const profileFields = {}
+    debugger
+    console.log("im back end")
     profileFields.user = req.user.id // gets the loged in user info
     if(req.body.handle) profileFields.handle = req.body.handle
     if(req.body.company) profileFields.company = req.body.company
@@ -149,6 +160,7 @@ router.post ('/', passport.authenticate('jwt', { session: false}), (req,res) => 
     })
 
 })
+
 
 // protected route to add expiriece to profile
 //  /profiles/experience

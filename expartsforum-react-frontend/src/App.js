@@ -39,8 +39,6 @@ if(extracted.exp < currentTime ) {
 
 
 
-
-
 class App extends Component {
   render() {
     return (
@@ -69,11 +67,4 @@ class App extends Component {
 export default App;
 
 
-// Personal Notes
-// </Switch> used for private Routes
-// import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
-//<img src = {user.avatar} alt={user.name} ></img> Logout here needs to be refixed
-// valdation needs to be refixed. logout redirect needs to be checked again to be sure
-// fix bootstrap for the input fields of profile.
-// fix boothstrap for the photos section

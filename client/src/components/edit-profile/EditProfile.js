@@ -30,64 +30,62 @@ class CreateProfile extends Component {
       errors: {}
     };
 
-    // this.onChange = this.onChange.bind(this);
-    // this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentDidMount() {
     this.props.getCurrentProfile();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
+  componentWillReceiveProps(newProps) {
+    if (newProps.errors) {
+      this.setState({ errors: newProps.errors });
     }
 
-    if (nextProps.profile.profile) {
-      const profile = nextProps.profile.profile;
+    if (newProps.profile.profile) {
+      const newProfile = newProps.profile.profile;
 
       // Bring skills array back to CSV
-      const skillsCSV = profile.skills.join(',');
+      const skillsCSV = newProfile.skills.join(',');
 
       // If profile field doesnt exist, make empty string
-      profile.company = !isEmpty(profile.company) ? profile.company : '';
-      profile.website = !isEmpty(profile.website) ? profile.website : '';
-      profile.location = !isEmpty(profile.location) ? profile.location : '';
-      profile.githubusername = !isEmpty(profile.githubusername)
-        ? profile.githubusername
+      newProfile.company = !isEmpty(newProfile.company) ? newProfile.company : '';
+      newProfile.website = !isEmpty(newProfile.website) ? newProfile.website : '';
+      newProfile.location = !isEmpty(newProfile.location) ? newProfile.location : '';
+      newProfile.githubusername = !isEmpty(newProfile.githubusername)
+        ? newProfile.githubusername
         : '';
-      profile.bio = !isEmpty(profile.bio) ? profile.bio : '';
-      profile.social = !isEmpty(profile.social) ? profile.social : {};
-      profile.twitter = !isEmpty(profile.social.twitter)
-        ? profile.social.twitter
+      newProfile.bio = !isEmpty(newProfile.bio) ? newProfile.bio : '';
+      newProfile.social = !isEmpty(newProfile.social) ? newProfile.social : {};
+      newProfile.twitter = !isEmpty(newProfile.social.twitter)
+        ? newProfile.social.twitter
         : '';
-      profile.facebook = !isEmpty(profile.social.facebook)
-        ? profile.social.facebook
+      newProfile.facebook = !isEmpty(newProfile.social.facebook)
+        ? newProfile.social.facebook
         : '';
-      profile.linkedin = !isEmpty(profile.social.linkedin)
-        ? profile.social.linkedin
+      newProfile.linkedin = !isEmpty(newProfile.social.linkedin)
+        ? newProfile.social.linkedin
         : '';
-      profile.youtube = !isEmpty(profile.social.youtube)
-        ? profile.social.youtube
+      newProfile.youtube = !isEmpty(newProfile.social.youtube)
+        ? newProfile.social.youtube
         : '';
-      profile.instagram = !isEmpty(profile.social.instagram)
-        ? profile.social.instagram
+      newProfile.instagram = !isEmpty(newProfile.social.instagram)
+        ? newProfile.social.instagram
         : '';
 
-      // Set component fields state
+      // Set component fields state to edit newProfile
       this.setState({
-        handle: profile.handle,
-        company: profile.company,
-        website: profile.website,
-        location: profile.location,
-        status: profile.status,
+        handle: newProfile.handle,
+        company: newProfile.company,
+        website: newProfile.website,
+        location: newProfile.location,
+        status: newProfile.status,
         skills: skillsCSV,
-        githubusername: profile.githubusername,
-        bio: profile.bio,
-        twitter: profile.twitter,
-        facebook: profile.facebook,
-        linkedin: profile.linkedin,
-        youtube: profile.youtube
+        githubusername: newProfile.githubusername,
+        bio: newProfile.bio,
+        twitter: newProfile.twitter,
+        facebook: newProfile.facebook,
+        linkedin: newProfile.linkedin,
+        youtube: newProfile.youtube
       });
     }
   }
@@ -192,7 +190,7 @@ class CreateProfile extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <Link to="/dashboard" className="btn btn-light">
+              <Link to="/dashboard" className="btn btn-dark">
                 Go Back
               </Link>
               <h1 className="display-4 text-center">Edit Profile</h1>

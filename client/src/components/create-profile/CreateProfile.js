@@ -29,8 +29,8 @@ class CreateProfile extends Component {
       errors: {}
     };
 
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    // this.onChange = this.onChange.bind(this);
+    // this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -39,7 +39,7 @@ class CreateProfile extends Component {
     }
   }
 
-  onSubmit(e) {
+  onSubmit = (e) => {
     e.preventDefault();
 
     const profileData = {
@@ -61,9 +61,10 @@ class CreateProfile extends Component {
     this.props.createProfile(profileData, this.props.history);
   }
 
-  onChange(e) {
+  onChange = (e) =>  {
     this.setState({ [e.target.name]: e.target.value });
   }
+  
 
   render() {
     const { errors, displaySocialInputs } = this.state;

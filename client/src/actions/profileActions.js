@@ -40,6 +40,18 @@ export const createProfile = (profileData, history) => dispatch => {
     );
 };
 
+export const createExperience = (newExperience,history) => dispatch => {
+    axios
+          .post('/api/profiles/experience', newExperience)
+          .then(res => history.push('/dashboard'))
+          .catch(err => 
+            dispatch({
+              type:GET_ERRORS,
+              payload: err.response.data
+            }))
+}
+
+
 
 
 // Delete Profile and user

@@ -81,3 +81,4 @@ yarn-error.log*
 // fix boothstrap for the photos section
 // fix toggling profile social media or enter manually 52
 // FIX the Authrozation for the tokens so the profile route woks
+// Fix the check field for add experience and understand the logic

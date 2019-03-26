@@ -41,8 +41,8 @@ export const createProfile = (profileData, history) => dispatch => {
 };
 
 export const createExperience = (newExperience,history) => dispatch => {
-    axios
-          .post('/api/profiles/experience', newExperience)
+    axios      
+        .post('/api/profiles/experience', newExperience)
           .then(res => history.push('/dashboard'))
           .catch(err => 
             dispatch({
@@ -51,7 +51,34 @@ export const createExperience = (newExperience,history) => dispatch => {
             }))
 }
 
+export const createEducation = (newEducation,history) => dispatch => {
+  axios      
+      .post('/api/profiles/education', newEducation)
+        .then(res => history.push('/dashboard'))
+        .catch(err => 
+          dispatch({
+            type:GET_ERRORS,
+            payload: err.response.data
+          }))
+}
 
+
+
+
+
+
+
+// export const createEducation = (newEducation, history) => dispatch => {
+//   axios
+//       .post('/api/profiles/education',newEducation)
+//       .then(res => history.push('/dashboard'))
+//       .err( err => 
+//         dispatch ({
+//           type:GET_ERRORS,
+//           payload:err.response.data
+//         }))
+
+//  }
 
 
 // Delete Profile and user
@@ -86,9 +113,6 @@ export const clearCurrentProfile = () => {
     type: CLEAR_CURRENT_PROFILE
   };
 };
-
-
-
 
 
 

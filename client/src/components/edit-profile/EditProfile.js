@@ -85,7 +85,8 @@ class CreateProfile extends Component {
         twitter: newProfile.twitter,
         facebook: newProfile.facebook,
         linkedin: newProfile.linkedin,
-        youtube: newProfile.youtube
+        youtube: newProfile.youtube,
+        instagram: newProfile.instagram
       });
     }
   }

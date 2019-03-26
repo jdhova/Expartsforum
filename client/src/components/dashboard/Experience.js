@@ -1,7 +1,6 @@
 
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {Link,withRouter} from 'react-router-dom'
 import Moment from 'react-moment';
 import {deleteExperience} from '../../actions/profileActions'
 

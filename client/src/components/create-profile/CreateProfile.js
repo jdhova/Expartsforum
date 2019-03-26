@@ -29,8 +29,7 @@ class CreateProfile extends Component {
       errors: {}
     };
 
-    // this.onChange = this.onChange.bind(this);
-    // this.onSubmit = this.onSubmit.bind(this);
+    
   }
 
   componentWillReceiveProps(nextProps) {

@@ -64,22 +64,39 @@ export const createEducation = (newEducation,history) => dispatch => {
 
 
 
+// DELETE EXPERIENCE
+export const deleteExperience = (id) => dispatch => {
+  axios
+      .delete(`/api/profiles/experience/${id}`)
+      .then(res => 
+        dispatch({
+          type:GET_PROFILE,
+          payload:res.data
+        })
+      ).catch(err => 
+        dispatch({
+          type:GET_ERRORS,
+          payload:err.response.data
+        })
+      )
+}
 
+ // Delete Education 
 
-
-
-// export const createEducation = (newEducation, history) => dispatch => {
-//   axios
-//       .post('/api/profiles/education',newEducation)
-//       .then(res => history.push('/dashboard'))
-//       .err( err => 
-//         dispatch ({
-//           type:GET_ERRORS,
-//           payload:err.response.data
-//         }))
-
-//  }
-
+ export const deleteEducation = (id) => dispatch => {
+   axios
+      .delete(`/api/profiles/education/${id}`)
+      .then(res =>
+        dispatch({
+          type: GET_PROFILE,
+          payload:res.data
+        })
+        ).catch(err =>
+          dispatch({
+            type:GET_ERRORS,
+            payload:err.response.data
+          }))
+ }
 
 // Delete Profile and user
  export const deleteAccount = () => dispatch => {
@@ -97,6 +114,7 @@ export const createEducation = (newEducation,history) => dispatch => {
         payload: err.response.data
       }))
  }
+
 
 
 // Profile loading

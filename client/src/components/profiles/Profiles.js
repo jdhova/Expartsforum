@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import { getProfiles } from '../../actions/profileActions'
 import Spinner from '../common/spinner'
+import ProfileItem from './Profileitem'
 
 
 class Profiles extends Component {
@@ -21,23 +22,14 @@ class Profiles extends Component {
                 
     }  else {
         if(profiles.length > 0) {
-        <h2>PROFILE HERE FOR PROFILE ITEM COMPONENT</h2>
+            profileItems = profiles.map(profile => (
+                <ProfileItem key ={profile._id} profile={profile} />
+            ))
 
         }else {
             profileItems =<h4> NO PROFILE</h4>
         }
     }
-
-    // if(profiles === null || loading) {
-    //     profileItems = <Spinner/>
-    // } else {
-    //     if (profiles.length > 0)
-    //     <h2></h2>
-    //     else{
-    //         profileItems =<h4> NO PROFILE</h4>
-    //     }
-    // }
-
     
 
     return (
@@ -46,9 +38,9 @@ class Profiles extends Component {
             <div className="row">
                 <div className="col-md-12">
                     <h1 className="display-4 text-center">Experts Profiles</h1>  
-                    <p>Meet the experts
+                    <h3>Meet the experts </h3> 
                         {profileItems}
-                    </p> 
+                    
                 </div>
             </div>
         </div>

@@ -80,6 +80,22 @@ export const getProfiles = () => dispatch => {
           }))
 }
 
+export const getProfileByHandle = (handle) => dispatch => {
+      dispatch(setProfileLoading())
+      axios
+        .get(`/api/profiles/handle/${handle}`)
+        .then(res => 
+          dispatch({
+            type: GET_PROFILE,
+            payload:res.data
+          })
+          ).catch(err =>
+            dispatch({
+              type:GET_PROFILE,
+              err:err.response.data
+            }))
+}
+
 
 // DELETE EXPERIENCE
 export const deleteExperience = (id) => dispatch => {

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import { getProfiles } from '../../actions/profileActions'
 import Spinner from '../common/spinner'
-import ProfileItem from './Profileitem'
+import Profileitem from './Profileitem'
 
 
 class Profiles extends Component {
@@ -23,7 +23,7 @@ class Profiles extends Component {
     }  else {
         if(profiles.length > 0) {
             profileItems = profiles.map(profile => (
-                <ProfileItem key ={profile._id} profile={profile} />
+                <Profileitem key ={profile._id} profile={profile} />
             ))
 
         }else {

@@ -25,7 +25,8 @@ import axios from 'axios';
 
 
      handleChange = (e)=> {
-        console.log(e.target.files[0])  
+        // console.log(e.target.files[0])  
+        console.log(e.target.files[0])
         this.setState({
             multerImage : e.target.files[0] 
         }) 

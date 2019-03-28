@@ -96,6 +96,9 @@ export const getProfileByHandle = (handle) => dispatch => {
             }))
 }
 
+// UPLOADING IMAGE
+
+
 
 // DELETE EXPERIENCE
 export const deleteExperience = (id) => dispatch => {

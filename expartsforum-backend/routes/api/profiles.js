@@ -270,6 +270,11 @@ router.delete('/', passport.authenticate('jwt',{session: false}),
 
 });
 
+router.post('/image',(req,res) => {
+    res.status(400).json('success')
+})
+
+
 module.exports = router;
 
 

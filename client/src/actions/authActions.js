@@ -17,6 +17,20 @@ export const registerUser = (userData, history) => dispatch => {
     );
 };
 
+
+export const  uploadImage = (multerImage, history) => dispatch =>{
+  axios
+    .post ('/api/image', multerImage)
+    .then(res => history.push('/login'))
+    .catch(err => 
+      dispatch ({
+        type:GET_ERRORS,
+        payload: err.response.data
+      }))
+    
+}
+
+
 // Login - Get User Token
 export const loginUser = userData => dispatch => {
   axios

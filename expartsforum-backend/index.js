@@ -30,10 +30,13 @@ require('./config/passport')(passport)
 
 
 
-
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/expartsforum')
-    .then(() => console.log('mongo working'))
-    .catch(err => console.log('ERROR is', err))
+
+require("./models/Image");
+
+    // .then(() => console.log('mongo working'))
+    // .catch(err => console.log('ERROR is', err))
 
 app.use(passport.initialize());
 

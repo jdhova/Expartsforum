@@ -112,10 +112,19 @@ const ProfileSchema = new Schema({
       type: String
     }
   },
+  photo: [
+    {
+      path:  { type: String },
+      caption: { type: String }
+    }
+
+  ],
   date: {
     type: Date,
     default: Date.now
   }
+
+  
 });
 
 module.exports = Profile = mongoose.model('profile', ProfileSchema);

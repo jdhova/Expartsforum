@@ -20,8 +20,8 @@ export const registerUser = (userData, history) => dispatch => {
 
 export const  uploadImage = (multerImage, history) => dispatch =>{
   axios
-    .post ('/api/image', multerImage)
-    .then(res => history.push('/login'))
+    .post ('/api/image', multerImage )
+    .then(res => console.log('res',res,'multer',multerImage),history.push('/login'))
     .catch(err => 
       dispatch ({
         type:GET_ERRORS,

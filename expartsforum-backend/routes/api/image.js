@@ -10,11 +10,115 @@ const GridFsStorage = require('multer-gridfs-storage')
 const Grid = require('gridfs-stream')
 const methodOverride = require('method-override')
 const bodyParser = require('body-parser')
+// const fs = require('fs')
 
-// set storage enguine
-const storage = multer.diskStorage({
+
+
+
+
+router.use(bodyParser.json())
+router.use(methodOverride('_method'))
+
+
+
+const mongoURI = 'mongodb://localhost:27017/expartsforum'
+
+const conn = mongoose.createConnection(mongoURI)
+    
+ let gfs
+        conn.once('open', () => {
+            //ini Stream
+            debugger
+            gfs = Grid(conn.db, mongoose.mongo);
+            gfs.collection('uploads');
+        })
+
+// set storage Engine
+
+const storage = new GridFsStorage({
+     url: mongoURI,
+    file:( req, file) => {
+        return new Promise(( resolve,reject) => {
+            crypto.randomBytes(16 ,(err,buf) =>{
+                if(err) {
+                    // return reject(err)
+                    debugger
+                    console.log(err,'error')
+                    
+                }
+                const filename = buf.toString('hex') + path.extname(file.originalname)
+                debugger
+                const fileInfo = {
+                    filename: filename,
+                    bucketName :'uploads'
+                };
+                resolve(fileInfo);
+            })
+        })
+    }
+})
+
+ const image = multer({storage})
+
+//  const Image = require('../../models/Image');
+
+ router.route('/')
+.post(image.single('file'), function(req, res) {
+   
+    const new_img = new Image({
+        path :req.body.path,
+        caption: req.body.caption
+    });
+
+    // new_img.img.data = fs.readFileSync(req.file.path)
+    // new_img.img.contentType = 'image/jpeg';
+    new_img.save();
+
+    res.json({ message: 'New image added to the db!' });
 
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const storage = multer.diskStorage({
+//     destination: './public/uploads/',
+//     filename: function(req,file, cb) {
+//         cb(null,file.fieldname + '-'+ Date.now() + path.extname(file.originalname))
+//     }
+// });
+
+// const upload = multer({
+//     storage: stroage
+// }).single('multerImage')
+
+
 
 
 

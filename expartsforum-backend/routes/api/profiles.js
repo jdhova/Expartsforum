@@ -100,14 +100,6 @@ router.post ('/', passport.authenticate('jwt', { session: false}), (req,res) => 
         if(!isValid) {
             return res.status(400).json(errors)
         }
-
-
-  
-// router.post('/', (req,res) => { 
-//     const { errors, isValid } = validateProfileinput(req.body)
-//         if(!isValid) {
-//             return res.status(400).json(errors)
-//         }
     
     const profileFields = {}
     debugger

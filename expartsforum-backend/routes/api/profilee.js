@@ -5,6 +5,14 @@ const mongoose = require('mongoose')
 const passport = require('passport')
 const jwtStrategy = require('passport-jwt').Strategy
 const  bodyParser = require('body-parser');
+// const app = express()
+
+
+// Load Valudation
+
+const validateprofileeinput = require('../../validation/profilee')
+const validatecompanyinput = require('../../validation/company')
+const validateskillinput = require('../../validation/skillinput')
 
 
 
@@ -65,3 +73,100 @@ router.post('/', passport.authenticate ('jwt',{session:false}),
             })
 
 })
+
+router.get ('/', passport.authenticate('jwt', { session: false}), (req,res) => {
+    
+    Profilee.findOne({user: req.user.id}) 
+        .populate('user', ['name','avatar'])
+        .then(profilee => {
+        if(!profilee){
+          return res.status(404).json({noprofile: " there is no profile for this user"})
+        }
+        res.status(400).json({profilee: 'profile exsists'})
+        // recheck this part 
+    })
+    .catch(err => res.status(404).json({err:"this is the error"}))
+})
+
+
+
+router.post('/companyinformation', passport.authenticate('jwt',{session: false}), 
+        (req,res) => {
+
+    const {errors,isValid} = validatecompanyinput(req.body)
+     
+    if(!isValid) {
+        return res.status(400).json(errors)
+    }
+    // if(typeof req.body.numofyears !== 'undefined') {
+    //     profile.empskillreq = req.body.empskillreq.split(',')
+    // }  
+
+    Profilee.findOne({user : req.body.id})
+
+        .then(profilee => {    
+            const compInfo = {
+
+                companyhq: req.body.companyhq,
+                numofemployees: req.body.numofemployees,
+                numofyears: req.body.numofyears,
+                companybio: req.body.companybio
+            }
+            profilee.companyinformation.unshift(compInfo)
+            profilee.save().then(profilee =>{ res.status(400).json({profilee})})
+        })
+
+
+})
+
+
+router.post('/skillsrequied',passport.authenticate('jwt' ,{session: false}), 
+    
+    (req,res) => {
+
+      
+        const {errors, isValid} = validateskillinput(req.body) 
+       
+        // if(typeof req.body.empskillreq !== 'undefined') {
+        //     userf.empskillreq = req.body.empskillreq.split(',')
+        // }  
+
+    if(!isValid) {
+        return res.status(404).json(errors)
+    }
+
+        Profilee.findOne({user: req.body.id})
+            .then(profilee => {
+                const compSkills = {
+                    empskillreq : req.body.empskillreq,
+                    minedureq: req.body.minedureq
+                }
+                profilee.skillsrequied.unshift(compSkills)
+                profilee.save().then(profilee => {
+                    res.status(400).json({profilee})
+                })
+            })
+            
+
+})
+
+
+// router.delete('/experience/:exp_id', passport.authenticate('jwt',{session: false}),         
+//     (req, res) =>{
+        
+//         Profile.findOne({user: req.user.id})
+//         .then(profile => {
+//             const removeIndex = profile.experience
+//             .map(item => item.id)
+//             .indexOf(req.params.exp_id)
+
+//             profile.experience.splice(removeIndex, 1);
+
+//             profile.save().then(profile => res.json(profile))    
+//         })
+//         .catch (err => res.status(404).json(err))
+
+// });
+
+
+module.exports = router;

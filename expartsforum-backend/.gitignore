@@ -12,6 +12,9 @@ node_modules/
 keys.js
 
 
+router.get ('/' app.get findOne needs to be rechecked
+
+
 
 const express = require('express');
 const Image = require('../../models/Image');

@@ -9,6 +9,8 @@ const passport = require('passport');
 const profiles = require('./routes/api/profiles');
 const users = require('./routes/api/users');
 const image = require ('./routes/api/image')
+const profilee = require('./routes/api/profilee')
+
 
 // const passport = require('../config/passport.js')
 
@@ -44,13 +46,14 @@ app.use(passport.initialize());
 
 
 app.get('/', (req, res) =>{
-res.send('hello Dimond Fish')
+res.send('hello world')
 });
 
 app.use('/api/post', post);
 app.use('/api/profiles', profiles);
 app.use('/api/users', users);
 app.use('/api/image', image)
+app.use('/api/profilee', profilee)
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => console.log(`Back end server running on port ${port}`))

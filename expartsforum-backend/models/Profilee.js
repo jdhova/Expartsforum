@@ -4,9 +4,9 @@ const Schema = mongoose.Schema;
 
 const ProfileeSchema = new Schema({
 
-    user: {
+    Userr: {
         type: Schema.Types.ObjectId,
-        ref: 'users'
+        ref: 'userrs'
       },
       fullname: {
         type: String,
@@ -51,8 +51,8 @@ const ProfileeSchema = new Schema({
 
     skillsrequied : [
         {
-            empskillreq: [String],
-            minedureq: [String]
+            empskillreq: String,
+            minedureq: String
         }
     ],
 

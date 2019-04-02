@@ -151,6 +151,25 @@ router.post('/skillsrequied',passport.authenticate('jwt' ,{session: false}),
 })
 
 
+
+router.delete('/skillsrequied/:skl_id', passport.authenticate('jwt',{session: false}),         
+    (req, res) =>{
+        
+        Profile.findOne({user: req.user.id})
+        .then(profilee => {
+            const removeIndex = profilee.skillsrequied
+            .map(item => item.id)
+            .indexOf(req.params.skl_id)
+
+            profile.skillsrequied.splice(removeIndex, 1);
+
+            profilee.save().then(profilee => res.json(profilee))    
+        })
+        .catch (err => res.status(404).json(err))
+
+});
+
+
 // router.delete('/experience/:exp_id', passport.authenticate('jwt',{session: false}),         
 //     (req, res) =>{
         
@@ -168,5 +187,16 @@ router.post('/skillsrequied',passport.authenticate('jwt' ,{session: false}),
 
 // });
 
+
+router.delete('/', passport.authenticate('jwt',{session: false}),         
+    (req, res) =>{
+        
+       Profile.findOneAndRemove({user: req.user.id}).then(() => {
+           User.findOneAndRemove({_id: req.user.id}).then(() => {
+               res.json({done : 'Profile Deleted'})
+           })
+       })
+
+});
 
 module.exports = router;

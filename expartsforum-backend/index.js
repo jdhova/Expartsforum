@@ -8,6 +8,7 @@ const passport = require('passport');
  const post = require('./routes/api/post');
 const profiles = require('./routes/api/profiles');
 const users = require('./routes/api/users');
+const employer = require('./routes/api/employer')
 const image = require ('./routes/api/image')
 const profilee = require('./routes/api/profilee')
 
@@ -51,7 +52,8 @@ res.send('hello world')
 
 app.use('/api/post', post);
 app.use('/api/profiles', profiles);
-app.use('/api/users', users);
+app.use('/api/users', users); // employee route
+app.use('/api/employer',employer) // employer route
 app.use('/api/image', image)
 app.use('/api/profilee', profilee)
 

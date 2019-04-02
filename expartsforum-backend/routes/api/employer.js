@@ -1,4 +1,3 @@
-
 const express  = require('express');
 const router = express.Router();
 const gravatar = require('gravatar');
@@ -7,39 +6,36 @@ const jwt = require ('jsonwebtoken');
 const keys =  require('../../config/keys');
 const passport = require('passport')
 
+// const app = express()
+
 
 
 // Load input Validation
-const validateRegisterInput = require('../../validation/register'); 
-const validateLoginInput = require('../../validation/login'); 
+
+const employerRegValidation = require('../../validation/empreg'); 
+const employerLoginValidation = require('../../validation/emplogin'); 
 
 
 // Load user model
-const User = require('../../models/User');
+const Employer = require('../../models/Employer');
+
 
 router.get('/test', (req,res) => res.json({msg: 'user works'}))
 
-// Register Post Route Public Route
-// users/register
 router.post('/register', (req, res) => {
-    const{ errors, isValid} = validateRegisterInput(req.body)
+    const{ errors, isValid} = employerRegValidation(req.body)
     if(!isValid) {
         return res.status(400).json(errors);
     }
-    User.findOne({email: req.body.email})
+    Employer.findOne({email: req.body.email})
     .then(user => {
         if(user) {
             return res.status(400).json({email: 'Email already Exsists'})
         } else {
-            const avatar = gravatar.url(req.body.email, {
-                s:'200',
-                r:'pg',
-                d: 'mm'  // defalt
-            });
+            
             const newUser = new User({
                 name: req.body.name,
                 email: req.body.email,
-                avatar,
                 password: req.body.password
             });
 
@@ -58,17 +54,16 @@ router.post('/register', (req, res) => {
 });
 
 
-
 // Public Login post route 
 router.post('/login', (req,res) => {
-    const {errors,isValid} = validateLoginInput(req.body)
+    const {errors,isValid} = employerLoginValidation(req.body)
     if(!isValid) {
         return res.status(400).json(errors)
     }
     const email = req.body.email
     const password = req.body.password
 
-User.findOne({email})
+    Employer.findOne({email})
 .then(user => {
     if(!user){
         return res.status(404).json({email: 'user not found'})
@@ -77,10 +72,10 @@ User.findOne({email})
     .then(isMatch => {
         if(isMatch) {  
               
-           const payload = {id: user.id, name: user.name, avatar: user.avatar };
+           const payload = {id: user.id, name: user.name };
             jwt.sign
             (payload, keys.secretOrPrivateKey, 
-            {expiresIn: 7500}, 
+            {expiresIn: 8500}, 
             (err, token) => {
                 res.json({
                     success: true,
@@ -96,23 +91,6 @@ User.findOne({email})
 });
 
 
-// router.get('/current', (req,res) => res.json({msg: 'user works'}))
-// Protected Routes
-
-router.get (
-    '/current',
-     passport.authenticate('jwt', {session: false }), 
-    (req,res) => {
-    res.json({
-        id: req.user.id,
-        name: req.user.name,
-        email:req.user.email
-    });
-})
 
 
-module.exports = router;
-
-
-
-    
+module.exports = router

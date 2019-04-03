@@ -20,6 +20,8 @@ import Login from './components/auth/Login';
 import Loginemp from './components/auth/Loginemp';
 
 import Dashboard from './components/dashboard/Dashboard';
+import Employerdashboard from './components/dashboard/Employerdashboard';
+
 import CreateProfile from './components/create-profile/CreateProfile';
 import CreateEmpProfile from './components/create-profile/CreateEmpProfile';
 import EditProfile from './components/edit-profile/EditProfile';
@@ -67,11 +69,20 @@ class App extends Component {
               <Route exact path="/Registeremp" component={Registeremp} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/Loginemp" component={Loginemp} />
-              <Route exact path="/profiles" component={Profiles} />
+
               <Route exact path="/profile/:handle" component={Profile} />
               <Route exact path="/upload" component={upload} />
+
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              </Switch>
+
+              <Switch>
+                <PrivateRoute exact path="/profiles" component={Profiles} />
+              </Switch>
+
+              <Switch>
+                <PrivateRoute exact path="/Employerdashboard" component={Employerdashboard} />
               </Switch>
               <Switch>
                 <PrivateRoute

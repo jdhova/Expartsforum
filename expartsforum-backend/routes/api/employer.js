@@ -20,7 +20,8 @@ const employerLoginValidation = require('../../validation/emplogin');
 const Employer = require('../../models/Employer');
 
 
-router.get('/test', (req,res) => res.json({msg: 'user works'}))
+
+// router.get('/test', (req,res) => res.json({msg: 'user works'}))
 
 router.post('/register', (req, res) => {
     const{ errors, isValid} = employerRegValidation(req.body)
@@ -33,7 +34,7 @@ router.post('/register', (req, res) => {
             return res.status(400).json({email: 'Email already Exsists'})
         } else {
             
-            const newUser = new User({
+            const newUser = new Employer({
                 name: req.body.name,
                 email: req.body.email,
                 password: req.body.password

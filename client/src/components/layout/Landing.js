@@ -29,12 +29,12 @@ class Landing extends Component {
                                 <a className="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Employee</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Hirer</a>
+                                <a className="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Employer</a>
                             </li>
                         </ul>
                         <div className="tab-content" id="myTabContent">
                             <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <h3 className="register-heading">Apply as a Employee</h3>
+                                <h3 className="register-heading">Apply as an Employee</h3>
                                 <div className="row register-form">
                                     <div className="col-md-6">
                                         {/* // makes the div switch to opposite side */} 
@@ -51,7 +51,7 @@ class Landing extends Component {
                                             <h4 className="display-2 mb-4">Experts Forum</h4>
                                               <p className="lead">
                                                  {' '}
-                                                 Create an Experts Profile, 
+                                                 Create an Experts Profile 
                                                </p>
                                                <hr />
                                               <Link to="/register" className="btn btn-lg btn-info mr-2">
@@ -67,7 +67,7 @@ class Landing extends Component {
                                 </div>
                             </div>                
                             <div className="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                <h3  className="register-heading">Apply as a Hirer</h3>
+                                <h3  className="register-heading">Hire an Expert</h3>
                                 <div className="row register-form">
                                     <div className="col-md-6">
                                         <div className="form-group">
@@ -79,13 +79,13 @@ class Landing extends Component {
                                             <h4 className="display-2 mb-4">Experts Forum</h4>
                                               <p className="lead">
                                                  {' '}
-                                                 Create an Experts Profile, 
+                                                 Create an Employer Profile
                                                </p>
                                                <hr />
-                                              <Link to="/register" className="btn btn-lg btn-info mr-2">
+                                              <Link to="/Registeremp" className="btn btn-lg btn-info mr-2">
                                               Sign Up
                                                </Link>
-                                             <Link to="/login" className="btn btn-lg btn-light">
+                                             <Link to="/loginemp" className="btn btn-lg btn-light">
                                                Login
                                               </Link>
                                              </div>

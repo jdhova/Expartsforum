@@ -129,7 +129,6 @@ class Loginemp extends Component {
   constructor() {
     super();
     this.state = {
-     name : '',
       email: '',
       password: '',
       errors: {}
@@ -139,13 +138,13 @@ class Loginemp extends Component {
 
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
-      this.props.history.push('/dashboard');
+      this.props.history.push('/Employerdashboard');
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
-      this.props.history.push('/dashboard');
+      this.props.history.push('/Employerdashboard');
     }
 
     if (nextProps.errors) {
@@ -157,7 +156,6 @@ class Loginemp extends Component {
     e.preventDefault();
 
     const empLoginData = {
-     name : this.state.name,
       email: this.state.email,
       password: this.state.password
     };
@@ -182,15 +180,6 @@ class Loginemp extends Component {
                 Sign in to your Experts account
               </p>
               <form onSubmit={this.onSubmit}>
-
-              <TextFieldGroup
-                  placeholder="Email Address"
-                  name="name"
-                //   type="name"
-                  value={this.state.name}
-                  onChange={this.onChange}
-                  error={errors.name}
-                />
 
                 <TextFieldGroup
                   placeholder="Email Address"

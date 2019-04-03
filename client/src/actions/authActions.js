@@ -17,6 +17,21 @@ export const registerUser = (userData, history) => dispatch => {
     );
 };
 
+export const registerEmployer = (empData, history) => dispatch => {
+  axios
+    .post('/api/employer/register', empData)
+    .then(res => history.push('/Loginemp'))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+
+
+
 
 export const  uploadImage = (multerImage, history) => dispatch =>{
   axios
@@ -55,6 +70,29 @@ export const loginUser = userData => dispatch => {
     );
 };
 
+export const loginEmployer = empLoginData => dispatch => {
+  axios
+    .post('/api/employer/login', empLoginData)
+    .then(res => {
+      // Save to localStorage
+      const { token } = res.data;
+      // Set token to ls
+      localStorage.setItem('jwtToken', token);
+      // Set token to Auth header
+      setAuthToken(token);
+      // Decode token to get user data
+      const decoded = jwt_decode(token);
+      // Set current user
+      dispatch(setCurrentUser(decoded));
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
 // Set logged in user
 export const setCurrentUser = decoded => {
   return {
@@ -62,6 +100,10 @@ export const setCurrentUser = decoded => {
     payload: decoded
   };
 };
+
+
+
+
 
 // Log user out
 export const logoutUser = () => dispatch => {

@@ -14,7 +14,11 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Landing from './components/layout/Landing';
 import Register from './components/auth/Register';
+
+import Registeremp from './components/auth/Registeremp';
 import Login from './components/auth/Login';
+import Loginemp from './components/auth/Loginemp';
+
 import Dashboard from './components/dashboard/Dashboard';
 import CreateProfile from './components/create-profile/CreateProfile';
 import CreateEmpProfile from './components/create-profile/CreateEmpProfile';
@@ -60,7 +64,9 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <div className="container">
               <Route exact path="/register" component={Register} />
+              <Route exact path="/Registeremp" component={Registeremp} />
               <Route exact path="/login" component={Login} />
+              <Route exact path="/Loginemp" component={Loginemp} />
               <Route exact path="/profiles" component={Profiles} />
               <Route exact path="/profile/:handle" component={Profile} />
               <Route exact path="/upload" component={upload} />

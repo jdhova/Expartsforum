@@ -60,6 +60,7 @@ router.post('/login', (req,res) => {
     if(!isValid) {
         return res.status(400).json(errors)
     }
+    // const name = req.body.name
     const email = req.body.email
     const password = req.body.password
 

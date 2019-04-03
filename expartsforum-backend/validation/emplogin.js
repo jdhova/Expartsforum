@@ -7,7 +7,7 @@ const isEmpty = require  ('./is-empty');
 module.exports = function employerLoginValidation(info) {
     let errors = {};
 
-    info.name = !isEmpty(info.name) ? info.name : '';
+     info.name = !isEmpty(info.name) ? info.name : '';
     info.email = !isEmpty(info.email) ? info.email : '';
     info.password = !isEmpty(info.password) ? info.password : '';
     

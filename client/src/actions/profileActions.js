@@ -41,6 +41,23 @@ export const createProfile = (profileData, history) => dispatch => {
     );
 };
 
+
+//  CREATE EMPLOYER PROFILE
+// export const createEmployerProfile = (newEmpInfo, history) => dispatch => {
+
+//     axios
+//           .post('/api/profilee', newEmpInfo)
+//           .then(res => history.push('/dashboard'))
+//           .catch(err =>
+//             dispatch({
+//               type: GET_ERRORS,
+//               payload:err.response.data
+//             })) 
+//           }
+          
+
+
+
 export const createExperience = (newExperience,history) => dispatch => {
     axios      
         .post('/api/profiles/experience', newExperience)
@@ -65,6 +82,7 @@ export const createEducation = (newEducation,history) => dispatch => {
 
 
 export const getProfiles = () => dispatch => {
+
   dispatch(setProfileLoading())
   axios
       .get('/api/profiles/all')
@@ -74,10 +92,12 @@ export const getProfiles = () => dispatch => {
           payload:res.data
         })
         ).catch(err =>
+
           dispatch({
             type:GET_PROFILES,
-            payload:err.response.data
-          }))
+             payload:err.response.data
+          })) 
+          
 }
 
 export const getProfileByHandle = (handle) => dispatch => {

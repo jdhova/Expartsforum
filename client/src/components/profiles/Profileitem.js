@@ -10,11 +10,11 @@ class Profileitem extends Component {
       <div className="card card-body bg-light mb-3">
         <div className="row">
             <div className="col-2">
-                <img src={profile.user.avatar} alt="" className="rounded-circle"/>
+                <img src={profile.photo} alt="" className="rounded-circle"/>
             </div>
 
             <div className="col-lg-6 col-md-4 col-8">
-            <h3>{profile.user.name}</h3>
+            <h3>{profile.name}</h3>
                 <p>{profile.status} {isEmpty(profile.company) ? null : (<span> at {profile.company}</span>)}</p>
                 <p> 
                     {isEmpty(profile.locatoion) ? null : <span>{profile.location}</span>}

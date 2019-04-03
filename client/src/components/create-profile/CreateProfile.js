@@ -62,6 +62,7 @@ class CreateProfile extends Component {
 
   onChange = (e) =>  {
     this.setState({ [e.target.name]: e.target.value });
+    console.log('chaning state', e.target.name, this.state.handle)
   }
   
 
@@ -125,11 +126,11 @@ class CreateProfile extends Component {
     const options = [
       { label: '* Select Professional Status', value: 0 },
       { label: 'Developer', value: 'Developer' },
-      { label: 'Junior Developer', value: 'Junior Developer' },
-      { label: 'Senior Developer', value: 'Senior Developer' },
-      { label: 'Manager', value: 'Manager' },
+      { label: 'UX/UI Designer', value: 'UX/UI Designer' },
+      { label: 'Back end and Data Scientists', value: 'Back end and Data Scientists' },
+      { label: 'DevOps Engineers', value: 'DevOps Engineers' },
       { label: 'Student or Learning', value: 'Student or Learning' },
-      { label: 'Instructor or Teacher', value: 'Instructor or Teacher' },
+      { label: 'Booth-camp Graduates', value: 'Booth-camp Graduates' },
       { label: 'Intern', value: 'Intern' },
       { label: 'Other', value: 'Other' }
     ];

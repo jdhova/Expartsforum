@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {Link,withRouter} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import { uploadImage } from '../../actions/authActions';
-import axios from 'axios';
+
 
 
  class upload extends Component  {

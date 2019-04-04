@@ -25,7 +25,7 @@ import isEmpty from '../../validation/is-empty';
                   <a
                     className="text-white p-2"
                     href={profile.website}
-                    target="_blank"
+                    // target="_blank"
                   >
                     <i className="fas fa-globe fa-2x" />
                   </a>
@@ -35,7 +35,7 @@ import isEmpty from '../../validation/is-empty';
                   <a
                     className="text-white p-2"
                     href={profile.social.twitter}
-                    target="_blank"
+                    // target="_blank"
                   >
                     <i className="fab fa-twitter fa-2x" />
                   </a>
@@ -45,7 +45,7 @@ import isEmpty from '../../validation/is-empty';
                   <a
                     className="text-white p-2"
                     href={profile.social.facebook}
-                    target="_blank"
+                    // target="_blank"
                   >
                     <i className="fab fa-facebook fa-2x" />
                   </a>
@@ -55,7 +55,7 @@ import isEmpty from '../../validation/is-empty';
                   <a
                     className="text-white p-2"
                     href={profile.social.linkedin}
-                    target="_blank"
+                    // target="_blank"
                   >
                     <i className="fab fa-linkedin fa-2x" />
                   </a>
@@ -65,7 +65,7 @@ import isEmpty from '../../validation/is-empty';
                   <a
                     className="text-white p-2"
                     href={profile.social.youtube}
-                    target="_blank"
+                    // target="_blank"
                   >
                     <i className="fab fa-youtube fa-2x" />
                   </a>
@@ -75,7 +75,7 @@ import isEmpty from '../../validation/is-empty';
                   <a
                     className="text-white p-2"
                     href={profile.social.instagram}
-                    target="_blank"
+                    // target="_blank"
                   >
                     <i className="fab fa-instagram fa-2x" />
                   </a>

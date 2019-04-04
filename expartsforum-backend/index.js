@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const  bodyParser = require('body-parser');
 const passport = require('passport');
+const path = require('path')
 // const expressValidator = require('express-validator');
 
  const post = require('./routes/api/post');
@@ -56,6 +57,16 @@ app.use('/api/users', users); // employee route
 app.use('/api/employer',employer) // employer route
 app.use('/api/image', image)
 app.use('/api/profilee', profilee)
+
+// Serve static accet
+
+if(process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'))
+
+    app.get('*', (req,res) => {
+        res.sendFile(path.resolve(__dirname,'client', 'build','index.html'))
+    })
+}
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => console.log(`Back end server running on port ${port}`))

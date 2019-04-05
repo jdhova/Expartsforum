@@ -47,13 +47,13 @@ class Navbar extends Component {
         </li>
         
         <li className="nav-item">
-          <Link className="nav-link" to="/empreg">
+          <Link className="nav-link" to="/Registeremp">
             Employer Sign Up
           </Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/loginemp">
-            Employee Login
+            Employer Login
           </Link>
         </li>
       </ul>

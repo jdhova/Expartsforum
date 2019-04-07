@@ -1,18 +1,17 @@
 {
   "name": "expartsforum-backend",
   "description": "Exparts Social Media",
-  "version": "1.0.0", 
+  "version": "1.0.0",
   "engines": {
     "node": "11.10.0"
   },
-  "main":"index.js",
+  "main": "index.js",
   "scripts": {
-     "client-install": "npm install --prefix client",
+    "client-install": "npm install --prefix client",
     "start": "node index.js",
     "server": "nodemon index.js",
     "client": "npm start --prefix client",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
-  
   },
   "author": "Jude Okagu",
   "license": "ISC",

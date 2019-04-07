@@ -1,8 +1,11 @@
 {
   "name": "expartsforum-backend",
   "description": "Exparts Social Media",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "1.0.0", 
+  "engines": {
+    "node": "11.10.0"
+  },
+  "main":"index.js",
   "scripts": {
      "client-install": "npm install --prefix client",
     "start": "node index.js",

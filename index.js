@@ -47,9 +47,9 @@ app.use(passport.initialize());
 
 
 
-app.get('/', (req, res) =>{
-res.send('hello world')
-});
+// app.get('/', (req, res) =>{
+// res.send('hello world')
+// });
 
 app.use('/api/post', post);
 app.use('/api/profiles', profiles);

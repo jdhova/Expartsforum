@@ -1,8 +1,12 @@
 import axios from 'axios';
+
 import setAuthToken from '../utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
 
+
 import { GET_ERRORS, SET_CURRENT_USER } from './types';
+
+
 
 // Register User
 export const registerUser = (userData, history) => dispatch => {
@@ -37,7 +41,7 @@ export const registerEmployer = (empData, history) => dispatch => {
 
 export const  uploadImage = (multerImage, history) => dispatch =>{
   axios
-    .post ('/api/image', multerImage )
+    .post ('http://localhost:3001/api/image', multerImage )
     .then(res => console.log('res',res,'multer',multerImage),history.push('/login'))
     .catch(err => 
       dispatch ({

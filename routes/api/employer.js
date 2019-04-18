@@ -5,6 +5,12 @@ const bcrypt = require('bcryptjs');
 const jwt = require ('jsonwebtoken');
 const keys =  require('../../config/keys');
 const passport = require('passport')
+const cors = require('cors');
+const bodyParser = require('body-parser');
+
+router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({ extended: true }));
+router.use(cors());
 
 // const app = express()
 

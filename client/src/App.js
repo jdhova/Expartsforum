@@ -63,6 +63,8 @@ class App extends Component {
         <Router>
           <div className="App">
             <Navbar />
+            {/* <Landing/> */}
+            {/* <Footer /> */}
             <Route exact path="/" component={Landing} />
             <div className="container">
               <Route exact path="/register" component={Register} />

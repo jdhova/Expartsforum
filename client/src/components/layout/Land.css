@@ -4,14 +4,14 @@ body {
      
   }
 
-  body {
+   body {
     background: url("/images/jobs.jpg") no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-  }
-  
+  } 
+   
   a,
   [type="submit"] {
     transition: all .25s ease-in;
@@ -170,3 +170,14 @@ body {
     color: #787878;
   }
   
+/* 
+  @media(max-width: 700px) {
+      body {
+        
+        background: url("/images/jobs.jpg") no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
+  } */

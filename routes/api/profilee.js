@@ -98,10 +98,7 @@ router.post('/companyinformation', passport.authenticate('jwt',{session: false})
     if(!isValid) {
         return res.status(400).json(errors)
     }
-    // if(typeof req.body.numofyears !== 'undefined') {
-    //     profile.empskillreq = req.body.empskillreq.split(',')
-    // }  
-
+   
     Profilee.findOne({user : req.body.id})
 
         .then(profilee => {    
